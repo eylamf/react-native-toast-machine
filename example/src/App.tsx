@@ -1,18 +1,44 @@
-import { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@eylamf/react-native-toast-machine';
+import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
+import { ToastProvider, useToast } from '@eylamf/react-native-toast-machine';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useState } from 'react';
 
 export default function App() {
-  const [result, setResult] = useState<number | undefined>();
+  const [test, setTest] = useState(false);
 
-  useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+  if (test) return <View style={{ flex: 1, backgroundColor: 'blue' }} />;
 
   return (
-    <View style={styles.container}>
-      <Text>Result: {result}</Text>
-    </View>
+    <SafeAreaProvider>
+      <ToastProvider>
+        <View style={styles.container}>
+          <MyButton />
+          <Text onPress={() => setTest(true)}>Test</Text>
+        </View>
+      </ToastProvider>
+    </SafeAreaProvider>
+  );
+}
+
+function MyButton() {
+  const { showToast } = useToast();
+
+  return (
+    <TouchableOpacity
+      style={styles.button}
+      onPress={() =>
+        showToast({
+          content: (
+            <>
+              <Text style={styles.label}>Conversation marked as unread</Text>
+              <Text style={styles.sublabel}>View all unread</Text>
+            </>
+          ),
+        })
+      }
+    >
+      <Text style={styles.label}>Show toast</Text>
+    </TouchableOpacity>
   );
 }
 
@@ -22,9 +48,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  box: {
-    width: 60,
-    height: 60,
-    marginVertical: 20,
+  button: {
+    backgroundColor: 'black',
+    borderRadius: 20,
+    borderCurve: 'continuous',
+    paddingHorizontal: 20,
+    paddingVertical: 12,
   },
+  label: { color: 'white' },
+  sublabel: { color: 'rgb(150, 150, 150)', fontSize: 12, marginTop: 2 },
 });
