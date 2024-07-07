@@ -1,4 +1,4 @@
-# @eylamf/react-native-toast-machine
+# React Native Toast Machine 🍞
 
 Toasts for React Native
 
@@ -46,7 +46,7 @@ showToast({ content: 'Some string content' });
 showToast({ content: <MyCustomContent /> });
 ```
 
-3. Using a function signature, which provides an `onDismiss` paramter that can be used to dismiss this toast
+3. Using a function signature, which provides an `onDismiss` parameter that can be used to dismiss this toast
 
 ```tsx
 showToast({
