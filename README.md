@@ -32,12 +32,25 @@ function MyScreenContent() {
 
 ## API/Hook
 
+There are 3 ways of calling of the `showToast` hook.
+
+1. Using basic string content
+
 ```tsx
 showToast({ content: 'Some string content' });
-// Or pass a component for more flexibility. This function syntax provides the `onDismiss` parameter, which
-// will dismiss the toast when invoked.
+```
+
+2. Using a custom component
+
+```tsx
+showToast({ content: <MyCustomContent /> });
+```
+
+3. Using a function signature, which provides an `onDismiss` paramter that can be used to dismiss this toast.
+
+```tsx
 showToast({
-  content: (onDismiss) => <MyCustomToastContent onPressXIcon={onDismiss} />,
+  content: (onDismiss) => <MyCustomContent onPressXIcon={onDismiss} />,
 });
 ```
 
@@ -55,7 +68,7 @@ showToast({
 
 1. `ToastInfo` - describes the structure of a Toast.
 2. `ToastInfoWithId` - the same as the above, but with a unique `id` attribute.
-3. `CustomToastComponentProps` - the props provided to a custom component rendered using the `customToastComponent` prop.
+3. `ToastProviderProps` - the props for the `ToastProvider` component.
 
 ## Contributing
 
