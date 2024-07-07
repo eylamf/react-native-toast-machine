@@ -1,5 +1,4 @@
 import {
-  type PropsWithChildren,
   createContext,
   useCallback,
   useContext,
@@ -9,18 +8,10 @@ import {
   useEffect,
 } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { View, StyleSheet, type ViewStyle, type TextStyle } from 'react-native';
-import type { ToastInfo, ToastInfoWithId } from './types';
+import { View, StyleSheet } from 'react-native';
+import type { ToastInfo, ToastInfoWithId, ToastProviderProps } from './types';
 import { Toast } from './components/Toast';
 import { runLayoutAnimation } from './utilities';
-
-type Props = PropsWithChildren<{
-  maxNumberToRender?: number;
-  duration?: number;
-  additionalBottomSpacing?: number;
-  toastStyles?: ViewStyle;
-  toastLabelStyles?: TextStyle;
-}>;
 
 type ToastContext = {
   showToast: (info: ToastInfo) => void;
@@ -40,7 +31,7 @@ export function ToastProvider({
   additionalBottomSpacing = 0,
   toastStyles,
   toastLabelStyles,
-}: Props) {
+}: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastInfoWithId[]>([]);
   const timeouts = useRef(new Map<string, NodeJS.Timeout>());
   const insets = useSafeAreaInsets();
