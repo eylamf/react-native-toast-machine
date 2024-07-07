@@ -32,7 +32,7 @@ function MyScreenContent() {
 
 ## API/Hook
 
-There are 3 ways of calling of the `showToast` hook.
+There are 3 ways of calling the `showToast` hook.
 
 1. Using basic string content
 
@@ -46,7 +46,7 @@ showToast({ content: 'Some string content' });
 showToast({ content: <MyCustomContent /> });
 ```
 
-3. Using a function signature, which provides an `onDismiss` paramter that can be used to dismiss this toast.
+3. Using a function signature, which provides an `onDismiss` paramter that can be used to dismiss this toast
 
 ```tsx
 showToast({
