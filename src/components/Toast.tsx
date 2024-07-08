@@ -45,17 +45,13 @@ export const Toast = memo(function _Toast({
       entering={SlideInDown.springify().damping(70).stiffness(1000)}
       exiting={FadeOut.duration(150).easing(Easing.out(Easing.poly(2)))}
     >
-      <View style={[styles.container, containerStyles]}>
-        <View style={styles.flexOne}>{renderMessage()}</View>
-      </View>
+      <View style={[styles.container, containerStyles]}>{renderMessage()}</View>
     </Animated.View>
   );
 });
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
     marginTop: 8,
     marginHorizontal: 20,
     borderRadius: 12,
